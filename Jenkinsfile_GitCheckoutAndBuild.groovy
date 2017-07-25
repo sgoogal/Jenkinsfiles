@@ -20,6 +20,8 @@ try {
             sh 'git clean -fdx; sleep 4;'
         }
 
+// If we use Java application against Python we need to test it and build:
+
         def mvnHome = tool 'mvn'
 
         stage('Build stage') {
@@ -37,7 +39,7 @@ try {
         }
 
         stage('Archive artifacts') {
-            archive 'target/*.jar', fingerprint: true
+            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
         }
     }
 }
